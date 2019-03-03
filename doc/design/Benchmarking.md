@@ -34,7 +34,8 @@ In our case we would requiring <b> E2E Pod Starup Latency </b> which would inclu
    - The Latency for <b> scheduling the pod (create to schedule) </b>
    - The Latency for <b> binding the pod to node (schedule to run) </b>
 
-## Code changes to be done
+## Changes to be done to the kubemark
   1) Modify the kube-mark startup script to bring up kube-batch scheduler along with the external kubernetes cluster. Create CRDs for    podgroup and queue.
   2) Run the density/latency test 3k pods on 100 (fake) nodes with default scheduler and batch scheduler.
+     For Batch scheduler test case : Modify the density/latency test case to create podgroup and add the podgroup name to the annotation along with "schedulerName: kube-batch" in the pod spec.
   3) Print out the metrics.
