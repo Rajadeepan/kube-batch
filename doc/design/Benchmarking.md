@@ -12,7 +12,7 @@ testing, as creating simulated clusters is faster and requires less resources th
 
 We assume that we want to benchmark a test T across two variants A(with default scheduler) and B(with kube-batch scheduler).
 For the benchmarking to be meaningful,these two variants should be running in a kubemark cluster and
-at identical scale (eg. both run 1k nodes).
+at identical scale (eg. both run 100 nodes).
 At a high-level, the kubemark should:
 
 - *choose the set of runs* of tests T executed on both A environment using the default scheduler and
@@ -31,5 +31,10 @@ Kubermark give the following metrics
 - api request serving latency (split by resource and verb)
 
 In our case we would requiring <b> E2E Pod Starup Latency </b> which would include
-   - The Latency for <b> scheduling the pod </b>
-   - The Latency for <b> binding the pod to node </b>
+   - The Latency for <b> scheduling the pod (create to schedule) </b>
+   - The Latency for <b> binding the pod to node (schedule to run) </b>
+
+## Code changes to be done
+  1) modifiy the kube-mark startup script to bring up kube-batch scheduler along with the external kubernetes cluster. Create CRDs for    podgroup and queue.
+  2) Run the density/latency test 3k pods on 100 (fake) nodes with default scheduler and batch scheduler.
+  3) Print out the metrics.
