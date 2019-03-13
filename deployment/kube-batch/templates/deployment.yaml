@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: {{ .Chart.Name }}
-        image: "{{ .Values.image.repository }}/kube-batch:{{ .Values.image.tag }}"
+        image: rajadeepan/kube-batch:raj
         args: ["--logtostderr", "--v", "3", "--enable-namespace-as-queue"]
-        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        imagePullPolicy: Always
         resources:
 {{ toYaml .Values.resources | indent 10 }}
 
