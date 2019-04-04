@@ -14,7 +14,8 @@ DRF calculate shares for each job. The share is the highest value of  ratio of t
 This share value is used for job ordering and task premption.
 
 #### Job Ordering:
-  The job having the lowest share will have higher priority. 
+  The job having the lowest share will have higher priority.
+  ![drfjobordering](drfjobordering.png)
 
 
 #### Task Preemption:
