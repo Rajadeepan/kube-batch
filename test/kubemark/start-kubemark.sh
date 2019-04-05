@@ -6,6 +6,7 @@ KUBECTL="${KUBE_ROOT}/cluster/kubectl.sh"
 KUBEMARK_DIRECTORY="${KUBE_ROOT}/test/kubemark"
 RESOURCE_DIRECTORY="${KUBEMARK_DIRECTORY}/resources"
 CRD_DIRECTORY="${KUBE_ROOT}/../../../deployment/kube-batch/templates"
+QUEUE_DIR="${KUBE_ROOT}/../../../config/queue"
 
 #Build kubernetes Binary and copy to _output folder
 if [ ! -d "$KUBE_ROOT/_output" ]; then
@@ -36,6 +37,9 @@ bash -x ${KUBEMARK_DIRECTORY}/start-kubemark.sh
 #creating the CRD Queue and PodGroup
 podgroup=$("${KUBECTL}" --kubeconfig="${RESOURCE_DIRECTORY}"/kubeconfig.kubemark create -f  "${CRD_DIRECTORY}"/scheduling_v1alpha1_queue.yaml 2> /dev/null) || true
 queue=$("${KUBECTL}" --kubeconfig="${RESOURCE_DIRECTORY}"/kubeconfig.kubemark create -f  "${CRD_DIRECTORY}"/scheduling_v1alpha1_podgroup.yaml 2> /dev/null) || true
+
+#creating default queue
+defaultqueue=$("${KUBECTL}" --kubeconfig="${RESOURCE_DIRECTORY}"/kubeconfig.kubemark create -f  "${QUEUE_DIR}"/default.yaml 2> /dev/null) || true
 
 #copy the kubemark config 
 cp ${RESOURCE_DIRECTORY}/kubeconfig.kubemark  ./

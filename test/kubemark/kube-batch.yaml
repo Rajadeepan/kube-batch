@@ -8,7 +8,7 @@ spec:
   nodeName: kubernetes-master
   containers:
   - name: kube-batch
-    image: kubesigs/kube-batch:v0.4.1
+    image: kubesigs/kube-batch:v0.4.2
     imagePullPolicy: IfNotPresent
     resources:
       requests:
