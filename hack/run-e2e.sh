@@ -13,7 +13,7 @@ curl ${dind_url} --output ${dind_dest}
 chmod +x ${dind_dest}
 ${dind_dest} up
 
-kubectl create -f config/crds/scheduling_v1alpha1_podgroup.yaml
+kubectl create -f deployment/kube-batch/templates/scheduling_v1alpha1_podgroup.yaml
 kubectl create -f config/crds/scheduling_v1alpha1_queue.yaml
 kubectl create -f config/queue/default.yaml
 
